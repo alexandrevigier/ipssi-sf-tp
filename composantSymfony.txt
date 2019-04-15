@@ -1,0 +1,1 @@
+composer require symfony/debug-pack --dev : pour avoir la barre de débug
