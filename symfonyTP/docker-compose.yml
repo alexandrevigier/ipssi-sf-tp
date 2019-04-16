@@ -25,6 +25,8 @@ services:
       - MYSQL_DATABASE=allan_db
     volumes:
       - db-data:/var/lib/mysql
+    ports:
+      - '3306:3306'
   adminer:
     image: adminer
     ports:
