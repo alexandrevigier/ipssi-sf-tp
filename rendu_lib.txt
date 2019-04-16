@@ -1,3 +1,4 @@
 ﻿composer require symfony/debug-pack --dev : pour avoir la barre de débug
 composer require annotations : pour faire les annotations pour les routes (ex: ArticleController)
 composer require form validator : Nous permet de faire des formulaires
+composer require maker : pouvoir nous creer des entity pour la base de données
