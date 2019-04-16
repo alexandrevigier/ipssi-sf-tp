@@ -32,7 +32,10 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/log" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/simple-cache" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sensio/framework-extra-bundle" />
+<<<<<<< HEAD
+=======
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/asset" />
+>>>>>>> 094ad1baacee272dba4244ff7f358ae949edde9a
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/cache" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/config" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/console" />
