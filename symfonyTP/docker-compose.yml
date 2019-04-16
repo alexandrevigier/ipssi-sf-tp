@@ -5,6 +5,8 @@ services:
     image: easybar/nginx:dev
     depends_on:
       - app
+    ports:
+      - "8080:80"
     environment:
       - DOCROOT=/srv/public
     volumes:
