@@ -42,12 +42,25 @@ class ArticleController extends AbstractController
     /**
      * @param Request $request
      * @param Article $article
+     * @return Response
      * @Route(path="/edit/{id}")
      */
 
-    public function edit(Request $request, Article $article)
+    public function edit(Request $request, Article $article): Response
     {
+        $isOk = false;
+        $newArticleForm = $this->createForm(ArticleType::class, $article);
+        $newArticleForm->handleRequest($request);
+        if($newArticleForm->isSubmitted() && $newArticleForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            $isOk = true;
+        }
 
+        return $this->render('Article/edit.html.twig', [
+            'articleForm' => $newArticleForm->createView(),
+            'isOk' => $isOk,
+        ]);
     }
 
 
@@ -65,5 +78,15 @@ class ArticleController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(Article::class);
 
         return $this->render('Article/list.html.twig', ['articles' => $repository->findAll()]);
+    }
+
+    /**
+     * @return Response
+     * @param Article $article
+     * @Route(path="/view/{id}")
+     */
+    public function viewArticle(Article $article): Response
+    {
+        return $this->render('Article/view.html.twig', ['article' => $article]);
     }
 }
