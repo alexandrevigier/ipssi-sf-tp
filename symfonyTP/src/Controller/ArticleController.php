@@ -3,6 +3,8 @@ declare(strict_types = 1);
 
 namespace App\Controller;
 
+use App\Entity\Article;
+use App\Form\ArticleType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,6 +39,17 @@ class ArticleController extends AbstractController
             ]);
     }
 
+    /**
+     * @param Request $request
+     * @param Article $article
+     * @Route(path="/edit/{id}")
+     */
+
+    public function edit(Request $request, Article $article)
+    {
+
+    }
+
 
     /*public function delete(Article $article): Response
     {
@@ -49,6 +62,8 @@ class ArticleController extends AbstractController
      */
     public function list(): Response
     {
-        return new Response('Bonjour');
+        $repository = $this->getDoctrine()->getRepository(Article::class);
+
+        return $this->render('Article/list.html.twig', ['articles' => $repository->findAll()]);
     }
 }

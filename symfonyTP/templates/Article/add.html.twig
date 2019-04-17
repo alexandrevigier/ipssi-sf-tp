@@ -6,7 +6,7 @@
     {% else %}
         {{ form_start(articleForm) }}
         {{ form_rest(articleForm) }}
-        <button type="submit">Ajouter l'article</button>
-        {{ form_end(partyForm) }}
+        <button type="submit" class="btn btn-secondary">Ajouter l'article</button>
+        {{ form_end(articleForm) }}
     {% endif %}
 {% endblock %}
