@@ -23,13 +23,18 @@ class ArticleController extends AbstractController
     public function addArticle(Request $request): Response
     {
         $isOk = false;
-        //$newArticleForm = $this->createForm(ArticleType::class);
-//        $newArticleForm->handleRequest($request);
-//        if($newArticleForm->isSubmitted() && $newArticleForm->isValid()){
-//            $em = $this->getDoctrine()->getManager();
-//            $em->persist($newArticleForm->getData());
-//        }
-        return $this->render('Article/add.html.twig', ['isOk' => $isOk]);
+        $newArticleForm = $this->createForm(ArticleType::class);
+        $newArticleForm->handleRequest($request);
+        if($newArticleForm->isSubmitted() && $newArticleForm->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($newArticleForm->getData());
+            $em->flush();
+            $isOk = true;
+        }
+        return $this->render('Article/add.html.twig', [
+            'isOk' => $isOk,
+            'articleForm' => $newArticleForm->createView(),
+            ]);
     }
 
 
@@ -44,6 +49,6 @@ class ArticleController extends AbstractController
      */
     public function list(): Response
     {
-
+        return new Response('Bonjour');
     }
 }

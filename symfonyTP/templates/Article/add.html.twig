@@ -4,5 +4,9 @@
     {% if isOk %}
         <h2>L'article a bien été créer</h2>
     {% else %}
+        {{ form_start(articleForm) }}
+        {{ form_rest(articleForm) }}
+        <button type="submit">Ajouter l'article</button>
+        {{ form_end(partyForm) }}
     {% endif %}
 {% endblock %}
