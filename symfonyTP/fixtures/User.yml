@@ -1,5 +1,5 @@
-App\Entity\Player:
-  player-{1..25}:
+App\Entity\Users:
+  Users-{1..25}:
     __construct: false
     name: '<name()>'
     mail: '<email()>'

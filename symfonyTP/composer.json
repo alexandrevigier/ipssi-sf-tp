@@ -64,6 +64,8 @@
         }
     },
     "require-dev": {
+        "hautelook/alice-bundle": "^2.5",
+        "nelmio/alice": "^3.5",
         "symfony/debug-pack": "^1.0",
         "symfony/web-server-bundle": "^4.2"
     }

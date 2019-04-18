@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+
+            <h1>Création d'un nouveau Joueur</h1>
+            {{ form_start(UserType) }}
+            {{ form_errors(UserType) }}
+            <hr/>
+
+            <hr/>
+
+            {{ form_rest(UserType) }}
+            <button type="submit">Envoyer</button>
+
+        </div>
+    </div>
+{% endblock %}
