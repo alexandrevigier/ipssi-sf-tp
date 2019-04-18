@@ -2,11 +2,9 @@
 
 {% block body %}
     {% if isOk %}
-    <div class="alert alert-dismissible alert-success">
-        <h2>L'article a bien été créer</h2>
-    </div>
+        <h2>L'article a bien été modifier</h2>
     {% else %}
-    <h2 style="text-align: center">Ajouter un article</h2>
+    <h2 style="text-align: center">Modifier un article</h2>
         {{ form_start(articleForm) }}
         {{ form_row(articleForm.titreArticle, {
             'label': "Titre de l'article",
@@ -22,7 +20,7 @@
         }) }}
         {{ form_rest(articleForm) }}
         <br>
-        <button type="submit" class="btn btn-secondary">Ajouter l'article</button>
+        <button type="submit" class="btn btn-secondary">Modifier l'article</button>
         {{ form_end(articleForm) }}
     {% endif %}
 {% endblock %}

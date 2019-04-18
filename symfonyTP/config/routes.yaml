@@ -1,7 +1,3 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
-
-addArticle:
-  path: /article/add
-  controller: App\Controller\ArticleController::addArticle
