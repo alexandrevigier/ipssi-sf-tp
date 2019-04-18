@@ -28,8 +28,13 @@
         </tbody>
         <div>
             <ul class="pagination">
-                <li class="page-item">
-                <a class="page-link" href="{{ path('app_article_list', {page: page-1}) }}">&laquo;</a>
+                {% if page == "1" %}
+                    <li class="page-item disable">
+                    <a class="page-link">&laquo;</a>
+                {% else %}
+                    <li class="page-item">
+                    <a class="page-link" href="{{ path('app_article_list', {page: page-1}) }}">&laquo;</a>
+                {% endif %}
                 </li>
                 <li class="page-item active">
                 <a class="page-link" href="#">{{ page }}</a>
