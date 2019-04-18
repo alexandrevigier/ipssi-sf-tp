@@ -20,49 +20,17 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-    /**
-     * Récupère une liste d'articles triés et paginés.
-     *
-     * @param int $page Le numéro de la page
-     * @param int $nbMaxParPage Nombre maximum d'article par page     
-     *
-     * @throws InvalidArgumentException
-     * @throws NotFoundHttpException
-     *
-     * @return Paginator
-     */
-    public function findAllPagineEtTrie($page, $nbMaxParPage)
+    public function getArticles($first_result, $max_results = 10)
     {
-        if (!is_numeric($page)) {
-            throw new InvalidArgumentException(
-                'La valeur de l\'argument $page est incorrecte (valeur : ' . $page . ').'
-            );
-        }
+        $qb = $this->createQueryBuilder('a');
+        $qb
+            ->select()
+            ->setFirstResult($first_result)
+            ->setMaxResults($max_results);
 
-        if ($page < 1) {
-            throw new NotFoundHttpException('La page demandée n\'existe pas');
-        }
-
-        if (!is_numeric($nbMaxParPage)) {
-            throw new InvalidArgumentException(
-                'La valeur de l\'argument $nbMaxParPage est incorrecte (valeur : ' . $nbMaxParPage . ').'
-            );
-        }
-    
-        $qb = $this->createQueryBuilder('a')
-            ->orderBy('a.id', 'DESC');
-        
-        $query = $qb->getQuery();
-
-        $premierResultat = ($page - 1) * $nbMaxParPage;
-        $query->setFirstResult($premierResultat)->setMaxResults($nbMaxParPage);
-        $paginator = new Paginator($query);
-
-        if ( ($paginator->count() <= $premierResultat) && $page != 1) {
-            throw new NotFoundHttpException('La page demandée n\'existe pas.'); // page 404, sauf pour la première page
-        }
-
-        return $paginator;
+        $pag = new Paginator($qb);
+        $c = count($pag);
+        return $pag;
     }
 
     // /**
