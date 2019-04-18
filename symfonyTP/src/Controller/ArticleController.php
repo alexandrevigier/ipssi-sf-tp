@@ -63,51 +63,31 @@ class ArticleController extends AbstractController
         ]);
     }
 
-
-    /*public function delete(Article $article): Response
+    /**
+     * @Route(path="/delete/{id}")
+     */
+    public function delete(Article $article): Response
     {
-
-    }*/
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($article);
+        $em->flush();
+        return $this->redirectToRoute('app_article_list');
+    }
 
     /**
      * @return Response
-     * @Route(path="/list/{page}" , requirements={"page" = "\d+"}, defaults={"page" = 1})
+     * @Route(path="/list/{page}", defaults={"page"=1})
      */
     public function list($page): Response
     {
         $repository = $this->getDoctrine()->getRepository(Article::class);
-        $listArticles = $this->indexAction($page);
+        if ($page == 1){
+            $articles = $repository->getArticles(0);
+        }else{
+            $articles = $repository->getArticles(($page - 1) * 10);
+        }
 
-        return $this->render('Article/list.html.twig', ['articles' => $listArticles, 'isOk' => true]);
-    }
-
-    /**
-     * Liste l'ensemble des articles triés par date de publication pour une page donnée.
-     *
-     * @param int $page Le numéro de la page
-     *
-     * @return array
-     */
-    public function indexAction($page)
-    {
-        $nbArticlesParPage = $this->container->getParameter('front_nb_articles_par_page');
-
-        $em = $this->getDoctrine()->getManager();
-
-        $articles = $em->getRepository('XxxYyyBundle:Article')
-            ->findAllPagineEtTrie($page, $nbArticlesParPage);
-
-        $pagination = array(
-            'page' => $page,
-            'nbPages' => ceil(count($articles) / $nbArticlesParPage),
-            'nomRoute' => 'front_articles_index',
-            'paramsRoute' => array()
-        );
-
-        return array(         
-            'articles' => $articles,
-            'pagination' => $pagination
-        );
+        return $this->render('Article/list.html.twig', ['articles' => $articles, 'page' => $page, 'isOk' => true]);
     }
 
     /**
