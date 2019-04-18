@@ -1,20 +1,29 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
-
-            <h1>Création d'un nouveau Joueur</h1>
-            {{ form_start(UserType) }}
-            {{ form_errors(UserType) }}
-            <hr/>
-
-            <hr/>
-
-            {{ form_rest(UserType) }}
-            <button type="submit">Envoyer</button>
-
-        </div>
-    </div>
+    <h1 style="text-align: center">Création d'un nouveau Joueur</h1>
+    <hr><hr>
+    {{ form_start(UserType) }}
+    {{ form_row(UserType.name, {
+        'label': "Nom: ",
+        'attr': {
+            class: "form-control"
+        }
+    }) }}
+    {{ form_row(UserType.mail, {
+        'label': "Mail: ",
+        'attr': {
+            class: "form-control"
+        }
+    }) }}
+    {{form_row(UserType.password, {
+        'label': "Mot de passe: ",
+        'attr': {
+            class: "form-control"
+        }
+    }) }}
+    {{ form_errors(UserType) }}
+    {{ form_rest(UserType) }}
+    <br>
+    <button type="submit" class="btn btn-primary">Envoyer</button>
 {% endblock %}
