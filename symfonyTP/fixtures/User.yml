@@ -1,0 +1,7 @@
+App\Entity\Player:
+  player-{1..25}:
+    __construct: false
+    name: '<name()>'
+    mail: '<email()>'
+    password: '<password()>'
+    admin: '<numberBetween(0,9)>'
