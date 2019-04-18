@@ -3,27 +3,30 @@
 {% block body %}
     <h1 style="text-align: center">Création d'un nouveau Joueur</h1>
     <hr><hr>
-    {{ form_start(UserType) }}
-    {{ form_row(UserType.name, {
-        'label': "Nom: ",
-        'attr': {
-            class: "form-control"
-        }
-    }) }}
-    {{ form_row(UserType.mail, {
-        'label': "Mail: ",
-        'attr': {
-            class: "form-control"
-        }
-    }) }}
-    {{form_row(UserType.password, {
-        'label': "Mot de passe: ",
-        'attr': {
-            class: "form-control"
-        }
-    }) }}
-    {{ form_errors(UserType) }}
-    {{ form_rest(UserType) }}
-    <br>
-    <button type="submit" class="btn btn-primary">Envoyer</button>
+    <div class="form-group">
+        {{ form_start(UserType) }}
+        {{ form_row(UserType.name, {
+            'label': "Nom: ",
+            'attr': {
+                class: "form-control"
+            }
+        }) }}
+        {{ form_row(UserType.mail, {
+            'label': "Mail: ",
+            'attr': {
+                class: "form-control"
+            }
+        }) }}
+        {{form_row(UserType.password, {
+            'label': "Mot de passe: ",
+            'attr': {
+                class: "form-control"
+            }
+        }) }}
+        {{ form_errors(UserType) }}
+        {{ form_rest(UserType) }}
+        <br>
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+        {{ form_end(UserType) }}
+    </div>
 {% endblock %}
