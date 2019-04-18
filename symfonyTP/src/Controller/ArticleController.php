@@ -71,13 +71,43 @@ class ArticleController extends AbstractController
 
     /**
      * @return Response
-     * @Route(path="/list")
+     * @Route(path="/list/{page}" , requirements={"page" = "\d+"}, defaults={"page" = 1})
      */
-    public function list(): Response
+    public function list($page): Response
     {
         $repository = $this->getDoctrine()->getRepository(Article::class);
+        $listArticles = $this->indexAction($page);
 
-        return $this->render('Article/list.html.twig', ['articles' => $repository->findAll()]);
+        return $this->render('Article/list.html.twig', ['articles' => $listArticles, 'isOk' => true]);
+    }
+
+    /**
+     * Liste l'ensemble des articles triés par date de publication pour une page donnée.
+     *
+     * @param int $page Le numéro de la page
+     *
+     * @return array
+     */
+    public function indexAction($page)
+    {
+        $nbArticlesParPage = $this->container->getParameter('front_nb_articles_par_page');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $articles = $em->getRepository('XxxYyyBundle:Article')
+            ->findAllPagineEtTrie($page, $nbArticlesParPage);
+
+        $pagination = array(
+            'page' => $page,
+            'nbPages' => ceil(count($articles) / $nbArticlesParPage),
+            'nomRoute' => 'front_articles_index',
+            'paramsRoute' => array()
+        );
+
+        return array(         
+            'articles' => $articles,
+            'pagination' => $pagination
+        );
     }
 
     /**
@@ -87,6 +117,11 @@ class ArticleController extends AbstractController
      */
     public function viewArticle(Article $article): Response
     {
-        return $this->render('Article/view.html.twig', ['article' => $article]);
+        $repository = $this->getDoctrine()->getRepository(Article::class);
+        $viewArticle = $repository->find($article);
+        if (!empty($viewArticle)){
+            return $this->render('Article/view.html.twig', ['article' => $viewArticle]);
+        }
+        return $this->redirectToRoute('app_article_list', ['articles' => $repository->findAll(), 'isOk' => false]);
     }
 }

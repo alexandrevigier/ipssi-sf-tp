@@ -4,4 +4,4 @@ App\Entity\Users:
     name: '<name()>'
     mail: '<email()>'
     password: '<password()>'
-    admin: '<numberBetween(0,9)>'
+    admin: '<numberBetween(0,1)>'
