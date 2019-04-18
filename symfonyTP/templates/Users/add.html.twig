@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="jumbotron">
     <h1 style="text-align: center">Création d'un nouveau Joueur</h1>
     <hr><hr>
     <div class="form-group">
@@ -29,4 +30,5 @@
         <button type="submit" class="btn btn-primary">Envoyer</button>
         {{ form_end(UserType) }}
     </div>
+</div>
 {% endblock %}
