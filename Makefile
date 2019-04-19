@@ -12,8 +12,9 @@ help:
 .PHONY: start ## Start the project (Install in first place)
 start:
 		docker-compose up -d
-		php bin/console doctrine:database:create
-		php bin/console hautelook:fixtures:load
+		composer install
+		docker-compose exec -u 1000:1000 app php bin/console doctrine:migration:migrate
+		docker-compose exec -u 1000:1000 app php bin/console hautelook:fixtures:load
 
 .PHONY: exec ###Permet d se connecter dans le container
 exec:
