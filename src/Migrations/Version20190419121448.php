@@ -21,8 +21,9 @@ final class Version20190419121448 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf(
-        $this->connection->getDatabasePlatform()->getName() !== 'mysql',
-        'Migration can only be executed safely on \'mysql\'.' );
+            $this->connection->getDatabasePlatform()->getName() !== 'mysql',
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         $this->addSql('CREATE TABLE commentaire (
                   id INT AUTO_INCREMENT NOT NULL, article_id INT DEFAULT NULL,
@@ -45,8 +46,10 @@ final class Version20190419121448 extends AbstractMigration
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql',
-        'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            $this->connection->getDatabasePlatform()->getName() !== 'mysql',
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         $this->addSql('ALTER TABLE commentaire DROP FOREIGN KEY FK_67F068BCA76ED395');
         $this->addSql('DROP TABLE commentaire');
