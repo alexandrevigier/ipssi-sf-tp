@@ -36,14 +36,14 @@ class Commentaire
         return $this->id;
     }
 
-    public function getCommantaire(): ?string
+    public function getCommentaire(): ?string
     {
-        return $this->commantaire;
+        return $this->commentaire;
     }
 
-    public function setCommantaire(string $commantaire): self
+    public function setCommentaire(string $commentaire): self
     {
-        $this->commantaire = $commantaire;
+        $this->commentaire = $commentaire;
 
         return $this;
     }
