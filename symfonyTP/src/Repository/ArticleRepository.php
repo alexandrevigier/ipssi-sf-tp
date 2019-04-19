@@ -25,6 +25,7 @@ class ArticleRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('a');
         $qb
             ->select()
+            ->orderBy('a.date_parution')
             ->setFirstResult($first_result)
             ->setMaxResults($max_results);
 

@@ -3,3 +3,4 @@ App\Entity\Article:
     __construct: false
     titre_article: '<text()>'
     contenu_article: '<text()>'
+    date_parution: "<dateTimeBetween('1 year ago', 'now')>"

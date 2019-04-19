@@ -11,6 +11,7 @@
         <thead>
             <tr>
                 <!--<th>Auteur</th>-->
+                <th>Date de parution</th>
                 <th>Article</th>
                 <th>Actions</th>
             </tr>
@@ -18,6 +19,7 @@
         <tbody>
         {% for article in articles %}
         <tr>
+            <td>{{ article.dateParution | date('j/m/Y') }}</td>
             <td>{{ article.titreArticle }}</td>
             <td>
                 <a href="{{ path('app_article_viewarticle', {id: article.id}) }}">Consulter</a>

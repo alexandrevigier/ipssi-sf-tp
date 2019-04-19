@@ -26,6 +26,11 @@ class Article
      */
     private $contenuArticle;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateParution;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,6 +56,18 @@ class Article
     public function setContenuArticle(string $contenuArticle): self
     {
         $this->contenuArticle = $contenuArticle;
+
+        return $this;
+    }
+
+    public function getDateParution(): ?\DateTimeInterface
+    {
+        return $this->dateParution;
+    }
+
+    public function setDateParution(\DateTimeInterface $dateParution): self
+    {
+        $this->dateParution = $dateParution;
 
         return $this;
     }
