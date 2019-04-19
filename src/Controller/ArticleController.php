@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Form\ArticleType;
+use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -80,6 +81,7 @@ class ArticleController extends AbstractController
      */
     public function list($page): Response
     {
+        /** @var ArticleRepository $repository */
         $repository = $this->getDoctrine()->getRepository(Article::class);
         if ($page == 1) {
             $articles = $repository->getArticles(0);
