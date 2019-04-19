@@ -19,13 +19,9 @@ exec:
 
 .PHONY: test ##Lance les tests de l'app
 tests:
-<<<<<<< HEAD
-    vendor/bin/phpcs src
-    vendor/bin/phpstan analyse --level 6 src
-=======
-		vendor/bin/phpcs src
-		vendor/bin/phpstan analyse ---level 6 src
->>>>>>> 782bd881691fba0dbb3565fa3599c23aad379f52
+        vendor/bin/phpcs src
+        vendor/bin/phpstan analyse --level 6 src
+
 
 .PHONY: tests-fix ##Fixe le cs de l'app
 tests-fix:
