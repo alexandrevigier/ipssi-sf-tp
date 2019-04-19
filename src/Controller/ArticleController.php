@@ -27,7 +27,7 @@ class ArticleController extends AbstractController
         $isOk = false;
         $newArticleForm = $this->createForm(ArticleType::class);
         $newArticleForm->handleRequest($request);
-        if($newArticleForm->isSubmitted() && $newArticleForm->isValid()){
+        if ($newArticleForm->isSubmitted() && $newArticleForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($newArticleForm->getData());
             $em->flush();
@@ -51,7 +51,7 @@ class ArticleController extends AbstractController
         $isOk = false;
         $newArticleForm = $this->createForm(ArticleType::class, $article);
         $newArticleForm->handleRequest($request);
-        if($newArticleForm->isSubmitted() && $newArticleForm->isValid()) {
+        if ($newArticleForm->isSubmitted() && $newArticleForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->flush();
             $isOk = true;
@@ -81,9 +81,9 @@ class ArticleController extends AbstractController
     public function list($page): Response
     {
         $repository = $this->getDoctrine()->getRepository(Article::class);
-        if ($page == 1){
+        if ($page == 1) {
             $articles = $repository->getArticles(0);
-        }else{
+        } else {
             $articles = $repository->getArticles(($page - 1) * 10);
         }
         
@@ -99,7 +99,7 @@ class ArticleController extends AbstractController
     {
         $repository = $this->getDoctrine()->getRepository(Article::class);
         $viewArticle = $repository->find($article);
-        if (!empty($viewArticle)){
+        if (!empty($viewArticle)) {
             return $this->render('Article/view.html.twig', ['article' => $viewArticle]);
         }
         return $this->redirectToRoute('app_article_list', ['articles' => $repository->findAll(), 'isOk' => false]);

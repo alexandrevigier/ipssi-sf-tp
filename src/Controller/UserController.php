@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 namespace App\Controller;
+
 use App\Entity\Users;
 use App\Form\UserType;
 use App\Repository\UsersRepository;
@@ -8,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+
 /**
  * @Route(path="/users")
  */
@@ -34,5 +36,4 @@ class UserController extends AbstractController
             'UserType' => $form->createView()
         ]);
     }
-
 }
