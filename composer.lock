@@ -1301,7 +1301,7 @@
             ],
             "time": "2018-06-14T14:45:07+00:00"
         },
-        
+
         {
             "name": "jdorn/sql-formatter",
             "version": "v1.2.17",
