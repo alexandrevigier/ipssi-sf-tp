@@ -10,7 +10,7 @@ help:
 		| expand -t14
 .PHONY: start ## Start the project (Install in first place)
 start:
-    docker-compose up -d
+    	docker-compose up -d
 
 .PHONY: exec ###Permet d se connecter dans le container
 exec:
