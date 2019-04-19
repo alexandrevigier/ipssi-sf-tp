@@ -21,8 +21,9 @@
         {{form_row(UserType.password, {
             'label': "Mot de passe: ",
             'attr': {
-                class: "form-control"
-            }
+                class: "form-control",
+            },
+            'type': "password"
         }) }}
         {{ form_errors(UserType) }}
         {{ form_rest(UserType) }}

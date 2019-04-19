@@ -86,7 +86,7 @@ class ArticleController extends AbstractController
         }else{
             $articles = $repository->getArticles(($page - 1) * 10);
         }
-
+        
         return $this->render('Article/list.html.twig', ['articles' => $articles, 'page' => $page, 'isOk' => true]);
     }
 
